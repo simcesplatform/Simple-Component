@@ -20,7 +20,8 @@ The implemented component type is named SimpleComponent.
 
         ```text
         if <inputComponents list is not empty>:
-            SimpleValue = <sum of the SimpleValues received from all input messages>
+            SimpleValue = <sum of the SimpleValues received from all input messages> +
+                          <the SimpleValue given to the component at startup>
         else:
             SimpleValue = <the SimpleValue given to the component at startup> +
                           <epoch number divided by 1000>

@@ -133,9 +133,9 @@ class SimpleComponent(AbstractSimulationComponent):
 
         # set the number value used in the output message
         if self._current_input_components:
-            self._current_number_sum += self._simple_value
+            self._current_number_sum = round(self._current_number_sum + self._simple_value, 3)
         else:
-            self._current_number_sum = self._simple_value + self._latest_epoch / 1000
+            self._current_number_sum = round(self._simple_value + self._latest_epoch / 1000, 3)
 
         # send the output message
         await asyncio.sleep(self._output_delay)
