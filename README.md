@@ -32,6 +32,7 @@ The implemented component type is named SimpleComponent.
 ## Development steps
 
 This section the development steps taken during the development of this example component.
+Note, that there are no unit tests implemented for this example component. Also, some of the function descriptions are still incomplete.
 
 1. Create a Git repository at GitLab under the ProcemPlus group.
     - from [https://git.ain.rd.tut.fi/procemplus](https://git.ain.rd.tut.fi/procemplus) select `"New project"`
