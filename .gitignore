@@ -4,3 +4,5 @@
 .vscode
 logfile.log
 logs/*.log
+pyrightconfig.json
+python_libraries.env
