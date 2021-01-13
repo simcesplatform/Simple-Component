@@ -1,0 +1,30 @@
+# The parameters for the core components, i.e. Simulation Manager and Log Writer
+Simulation:
+    Name: "Simple simulation"
+    Description: "Simple simulation with interacting components."
+    InitialStartTime: "2020-01-01T00:00:00.000Z"
+    EpochLength: 3600
+    MaxEpochCount: 168
+
+Components:
+    # 4 components that interact as the ones described in
+    # https://wiki.eduuni.fi/display/tuniSimCES/Time+and+synchronization
+    SimpleComponent:
+
+        C1:
+            SimpleValue: 2.0
+            OutputDelay: 0.2
+
+        C2:
+            SimpleValue: 3.0
+            OutputDelay: 1.0
+
+        C3:
+            SimpleValue: 5.0
+            InputComponents: "C1,C2"
+            OutputDelay: 0.5
+
+        C4:
+            SimpleValue: 7.0
+            InputComponents: "C2,C3"
+            OutputDelay: 0.3
