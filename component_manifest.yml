@@ -1,0 +1,18 @@
+# The component manifest file for the Simple test component
+
+Name: SimpleComponent
+Type: platform
+Description: "Simple test component for the Decoupled Simulation Platform"
+DockerImage: procem.ain.rd.tut.fi/despa/simple_component
+Attributes:
+    SimpleValue:
+        Environment: SIMPLE_VALUE
+        Optional: false
+    InputComponents:
+        Environment: INPUT_COMPONENTS
+        Optional: true
+        Default: ""
+    OutputDelay:
+        Environment: OUTPUT_DELAY
+        Optional: true
+        Default: 0.0
