@@ -175,24 +175,23 @@ class SimpleComponent(AbstractSimulationComponent):
             message_object = cast(SimpleMessage, message_object)
             # ignore simple messages from components that have not been registered as input components
             if message_object.source_process_id not in self._input_components:
-                LOGGER.debug("Ignoring SimpleMessage from {}".format(message_object.source_process_id))
+                LOGGER.debug(f"Ignoring SimpleMessage from {message_object.source_process_id}")
 
             # only take into account the first simple message from each component
             elif message_object.source_process_id in self._current_input_components:
-                LOGGER.info("Ignoring new SimpleMessage from {}".format(message_object.source_process_id))
+                LOGGER.info(f"Ignoring new SimpleMessage from {message_object.source_process_id}")
 
             else:
                 self._current_input_components.add(message_object.source_process_id)
                 self._current_number_sum = round(self._current_number_sum + message_object.simple_value, 3)
-                LOGGER.debug("Received SimpleMessage from {}".format(message_object.source_process_id))
+                LOGGER.debug(f"Received SimpleMessage from {message_object.source_process_id}")
 
                 self._triggering_message_ids.append(message_object.message_id)
                 if not await self.start_epoch():
-                    LOGGER.debug("Waiting for other input messages before processing epoch {:d}".format(
-                        self._latest_epoch))
+                    LOGGER.debug(f"Waiting for other input messages before processing epoch {self._latest_epoch}")
 
         else:
-            LOGGER.debug("Received unknown message from {}: {}".format(message_routing_key, message_object))
+            LOGGER.debug("Received unknown message from {message_routing_key}: {message_object}")
 
     async def _send_simple_message(self):
         """
@@ -213,7 +212,7 @@ class SimpleComponent(AbstractSimulationComponent):
 
         except (ValueError, TypeError, MessageError) as message_error:
             # When there is an exception while creating the message, it is in most cases a serious error.
-            LOGGER.error("{}: {}".format(type(message_error).__name__, message_error))
+            LOGGER.error(f"{type(message_error).__name__}: {message_error}")
             await self.send_error_message("Internal error when creating simple message.")
 
 

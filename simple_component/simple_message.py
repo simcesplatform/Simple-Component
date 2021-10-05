@@ -75,7 +75,7 @@ class SimpleMessage(AbstractResultMessage):
         if self._check_simple_value(simple_value):
             self.__simple_value = simple_value
         else:
-            raise MessageValueError("Invalid value for SimpleValue: {}".format(simple_value))
+            raise MessageValueError(f"Invalid value for SimpleValue: {simple_value}")
 
     # provide a new implementation for the "test of message equality" function
     def __eq__(self, other: Any) -> bool:
