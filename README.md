@@ -70,8 +70,8 @@ Note, that there are no unit tests implemented for this example component. Also,
 8. Create this readme file with a descriptions about the new component and its workflow. For actual component create also an wiki/website page for the component.
 9. Create a configuration file for a test simulation that contains the newly created component.
     - The created test simulation configuration file for this simple component, [simple_simulation.yml](simple_simulation.yml), contains four components that work similarly as the components on the wiki page [https://wiki.eduuni.fi/display/tuniSimCES/Time+and+synchronization](https://wiki.eduuni.fi/display/tuniSimCES/Time+and+synchronization)
-
-10. Test the component by running a test simulation.
+10. Build and push a Docker image to the Container registry following the relevant instructions. (TODO: add the actual instructions here)
+11. Test the component by running a test simulation.
 
 ## Running test simulation
 
