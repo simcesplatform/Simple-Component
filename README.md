@@ -5,6 +5,8 @@
 - [Development steps](#development-steps)
 - [Running test simulation](#running-test-simulation)
 
+NOTE: the instructions regarding installing the component and running the test simulation are deprecated.
+
 ## Component description
 
 The implemented component type is named SimpleComponent.
@@ -32,7 +34,7 @@ The implemented component type is named SimpleComponent.
 
 ## Development steps
 
-This section the development steps taken during the development of this example component.
+This section documents the development steps taken during the development of this example component.
 Note, that there are no unit tests implemented for this example component. Also, some of the function descriptions are still incomplete.
 
 1. Create a Git repository at GitLab under the ProcemPlus group.
