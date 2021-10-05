@@ -5,8 +5,6 @@
 - [Development steps](#development-steps)
 - [Running test simulation](#running-test-simulation)
 
-NOTE: the instructions regarding installing the component and running the test simulation are deprecated.
-
 ## Component description
 
 The implemented component type is named SimpleComponent.
@@ -37,35 +35,27 @@ The implemented component type is named SimpleComponent.
 This section documents the development steps taken during the development of this example component.
 Note, that there are no unit tests implemented for this example component. Also, some of the function descriptions are still incomplete.
 
-1. Create a Git repository at GitLab under the ProcemPlus group.
-    - from [https://git.ain.rd.tut.fi/procemplus](https://git.ain.rd.tut.fi/procemplus) select `"New project"`
+1. Create a Git repository at GitHub under the simcesplatform organization.
+    - from [https://github.com/simcesplatform](https://github.com/simcesplatform) select `"New"`
     - for a new project, select `"Initialize repository with a README"`
 2. Clone the Git repository locally.
     - from the platform installation folder
 
         ```bash
-        git clone -c http.sslverify=false https://git.ain.rd.tut.fi/procemplus/simple-component.git
+        git clone https://github.com/simcesplatform/Simple-Component.git
+        # or if you are using SSH keys with GitHub
+        git clone git@github.com:simcesplatform/Simple-Component.git
         ```
 
-        where `simple-component` is the name of this repository
+        where `Simple-Component` is the name of this repository
 
-3. Set the setting to bypass the certificate checking inside the repository.
-
-    ```bash
-    cd simple-component
-    git config http.sslverify false --local
-    ```
-
-4. Initialize the submodule for simulation-tools library to utilize the Python library `simulation-tools`.
+3. Initialize the submodule for simulation-tools library to utilize the Python library `simulation-tools`.
 
     ```bash
     # fetch and setup the library as a submodule
-    git -c http.sslverify=false submodule add -b master https://git.ain.rd.tut.fi/procemplus/simulation-tools.git
+    git submodule add -b master https://github.com/simcesplatform/simulation-tools.git
     git submodule init
-    cd simulation-tools
-    git config http.sslverify false --local
-    cd ..
-    git submodule update --remote
+    git submodule update --remote --recursive
 
     # prepare the path for the submodule (to use tools.??? instead of simulation_tools.tools.???)
     cp -r simulation-tools/init .
@@ -73,20 +63,20 @@ Note, that there are no unit tests implemented for this example component. Also,
     printf '"""Add submodules to the python path."""\n\nimport init\n' > simple_component/__init__.py
     ```
 
-5. Create the message class, [simple_component/simple_message.py](simple_component/simple_message.py), based on the message template from [message_template.txt](https://git.ain.rd.tut.fi/procemplus/simulation-tools/-/blob/master/message_template.txt).
-6. Create the component code, [simple_component/simple_component.py](simple_component/simple_component.py), based on the component template from [component_template.py](https://git.ain.rd.tut.fi/procemplus/simulation-tools/-/blob/master/examples/component_template.py).
-7. Create the Dockerfile, [Dockerfile](Dockerfile), based on the Dockerfile template from [Dockerfile-template](https://git.ain.rd.tut.fi/procemplus/platform-manager/-/blob/master/instructions/Dockerfile-template).
-8. Include the required Python libraries file, [requirements.txt](requirements.txt), based on the template file [requirements.txt](https://git.ain.rd.tut.fi/procemplus/platform-manager/-/blob/master/instructions/requirements.txt).
-9. Create this readme file with a descriptions about the new component and its workflow. For actual component create a wiki page for the component.
-    - Include a section that should be added to the [docker-compose-build-domain.yml](https://git.ain.rd.tut.fi/procemplus/platform-manager/-/blob/master/build/domain/docker-compose-build-domain.yml) file for building domain components. See step 2 in [Running test simulation](#running-test-simulation) section.
-    - Include a section that should be added to the [supported_components_domain.json](https://git.ain.rd.tut.fi/procemplus/platform-manager/-/blob/master/supported_components_domain.json) file to register the new component type. See step 4 in [Running test simulation](#running-test-simulation) section.
-    - Include an example simulation configuration file that uses this component that can be used to test the component installation.
-        - The created test simulation configuration file, [simple_simulation.yml](simple_simulation.yml), contains four components that work similarly as the components on the wiki page [https://wiki.eduuni.fi/display/tuniSimCES/Time+and+synchronization](https://wiki.eduuni.fi/display/tuniSimCES/Time+and+synchronization)
-            - [simple_simulation.yml](simple_simulation.yml)
-10. Test the component by running the test simulation.
+4. Create the message class, [simple_component/simple_message.py](simple_component/simple_message.py), based on the message template from [message_template.txt](https://github.com/simcesplatform/simulation-tools/blob/master/message_template.txt).
+5. Create the component code, [simple_component/simple_component.py](simple_component/simple_component.py), based on the component template from [component_template.py](https://github.com/simcesplatform/simulation-tools/blob/master/examples/component_template.py).
+6. Create the Dockerfile, [Dockerfile](Dockerfile), based on the Dockerfile template from [Dockerfile-template](https://github.com/simcesplatform/platform-manager/blob/master/instructions/Dockerfile-template).
+7. Include the required Python libraries file, [requirements.txt](requirements.txt), based on the template file [requirements.txt](https://github.com/simcesplatform/platform-manager/blob/master/instructions/requirements.txt).
+8. Create this readme file with a descriptions about the new component and its workflow. For actual component create also an wiki/website page for the component.
+9. Create a configuration file for a test simulation that contains the newly created component.
+    - The created test simulation configuration file for this simple component, [simple_simulation.yml](simple_simulation.yml), contains four components that work similarly as the components on the wiki page [https://wiki.eduuni.fi/display/tuniSimCES/Time+and+synchronization](https://wiki.eduuni.fi/display/tuniSimCES/Time+and+synchronization)
+
+10. Test the component by running a test simulation.
 
 ## Running test simulation
 
+TODO: add steps to follow to install the platform and to run the simple component test simulation based on the general instructions.
+<!--
 Follow the instruction steps from [https://wiki.eduuni.fi/display/tuniSimCES/Running+a+simulation#Runningasimulation-Preparationsforanewsimulation](https://wiki.eduuni.fi/display/tuniSimCES/Running+a+simulation#Runningasimulation-Preparationsforanewsimulation).
 
 1. Install the simple component code
@@ -159,3 +149,4 @@ Follow the instruction steps from [https://wiki.eduuni.fi/display/tuniSimCES/Run
     ```bash
     source start_simulation.sh simple_simulation.yml
     ```
+-->
