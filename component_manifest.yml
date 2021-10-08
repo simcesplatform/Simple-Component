@@ -3,7 +3,7 @@
 Name: SimpleComponent
 Type: platform
 Description: "Simple test component for the Decoupled Simulation Platform"
-DockerImage: procem.ain.rd.tut.fi/despa/simple_component
+DockerImage: ghcr.io/simcesplatform/simple-component:latest
 Attributes:
     SimpleValue:
         Environment: SIMPLE_VALUE
