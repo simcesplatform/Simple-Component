@@ -8,7 +8,7 @@ Simulation:
 
 Components:
     # 4 components that interact as the ones described in
-    # https://wiki.eduuni.fi/display/tuniSimCES/Time+and+synchronization
+    # https://simcesplatform.github.io/core_time/
     SimpleComponent:
 
         C1:

@@ -67,9 +67,9 @@ Note, that there are no unit tests implemented for this example component. Also,
 5. Create the component code, [simple_component/simple_component.py](simple_component/simple_component.py), based on the component template from [component_template.py](https://github.com/simcesplatform/simulation-tools/blob/master/examples/component_template.py).
 6. Create the Dockerfile, [Dockerfile](Dockerfile), based on the Dockerfile template from [Dockerfile-template](https://github.com/simcesplatform/platform-manager/blob/master/instructions/Dockerfile-template).
 7. Include the required Python libraries file, [requirements.txt](requirements.txt), based on the template file [requirements.txt](https://github.com/simcesplatform/platform-manager/blob/master/instructions/requirements.txt).
-8. Create this readme file with a descriptions about the new component and its workflow. For actual component create also an wiki/website page for the component.
+8. Create this readme file with a descriptions about the new component and its workflow. For actual component create also a documentation page for the component.
 9. Create a configuration file for a test simulation that contains the newly created component.
-    - The created test simulation configuration file for this simple component, [simple_simulation.yml](simple_simulation.yml), contains four components that work similarly as the components on the wiki page [https://wiki.eduuni.fi/display/tuniSimCES/Time+and+synchronization](https://wiki.eduuni.fi/display/tuniSimCES/Time+and+synchronization)
+    - The created test simulation configuration file for this simple component, [simple_simulation.yml](simple_simulation.yml), contains four components that work similarly as the components on the documentation page [Time and synchronization with epochs](https://simcesplatform.github.io/core_time/)
 10. Build and push a Docker image to the Container registry following the relevant instructions. (TODO: add the actual instructions here)
 11. Test the component by running a test simulation.
 
