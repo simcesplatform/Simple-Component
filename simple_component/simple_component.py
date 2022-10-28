@@ -14,7 +14,7 @@ from typing import Any, cast, Set, Union
 from tools.components import AbstractSimulationComponent
 from tools.exceptions.messages import MessageError
 from tools.messages import BaseMessage
-from tools.tools import FullLogger, load_environmental_variables
+from tools.tools import FullLogger, load_environmental_variables, log_exception
 
 # import all the required messages from installed libraries
 from simple_component.simple_message import SimpleMessage
@@ -212,8 +212,8 @@ class SimpleComponent(AbstractSimulationComponent):
 
         except (ValueError, TypeError, MessageError) as message_error:
             # When there is an exception while creating the message, it is in most cases a serious error.
-            LOGGER.error(f"{type(message_error).__name__}: {message_error}")
-            await self.send_error_message("Internal error when creating simple message.")
+            log_exception(message_error)
+            await self.send_error_message("Internal error when creating result message.")
 
 
 def create_component() -> SimpleComponent:
@@ -253,14 +253,25 @@ async def start_component():
     """
     Creates and starts a SimpleComponent component.
     """
-    simple_component = create_component()
+    # A general exception handler that should catch any unhandled error that would otherwise crash the program.
+    # Having this might be especially useful when testing components in large simulations and some component(s)
+    # crash without giving any output.
+    #
+    # Note, that any exceptions thrown in async functions will not be caught here.
+    # Instead they should get logged as warnings but otherwise should not crash the component.
+    try:
+        simple_component = create_component()
 
-    # The component will only start listening to the message bus once the start() method has been called.
-    await simple_component.start()
+        # The component will only start listening to the message bus once the start() method has been called.
+        await simple_component.start()
 
-    # Wait in the loop until the component has stopped itself.
-    while not simple_component.is_stopped:
-        await asyncio.sleep(TIMEOUT)
+        # Wait in the loop until the component has stopped itself.
+        while not simple_component.is_stopped:
+            await asyncio.sleep(TIMEOUT)
+
+    except BaseException as error:  # pylint: disable=broad-except
+        log_exception(error)
+        LOGGER.info("Component will now exit.")
 
 
 if __name__ == "__main__":
