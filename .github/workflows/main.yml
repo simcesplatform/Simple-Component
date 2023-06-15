@@ -1,4 +1,4 @@
-name: Docker image update for SImple Component
+name: Docker image update for Simple Component
 
 on:
     push:

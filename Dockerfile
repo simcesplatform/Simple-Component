@@ -1,5 +1,5 @@
 # define the version of Python here
-FROM python:3.7.9
+FROM python:3.7.16
 LABEL org.opencontainers.image.source https://github.com/simcesplatform/simple-component
 LABEL org.opencontainers.image.description "Docker image for the simple-component for the SimCES platform."
 
